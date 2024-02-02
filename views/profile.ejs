@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pinterest</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+
+</head>
+  <body>
+    <%- include('./partials/header.ejs') %>
+
+    <div class="containerper">
+        <div class="cardper">
+          <div class="profile-picture">
+            <form action="/editprofile" hidden id="pfpform" method="post" enctype="multipart/form-data">
+              <input type="file" name="pfp" >
+            </form>
+            <div class="editprofile">
+              <img src="/images/download.png" alt="" id="editprofilebutton">
+              
+            </div>
+            <img src="/images/uploads/<%= user.dp%>" alt="Profile Picture">
+          </div>
+          <script>
+            document.getElementById('editprofilebutton').addEventListener('click', function () {
+                document.querySelector("#pfpform input").click();
+            });
+            document.querySelector("#pfpform input").addEventListener('change',function(){
+              document.querySelector("#pfpform").submit();
+            });
+        </script>
+          <h2 class="name"><%=  user.fullName %></h2>
+          <h3 class="username">@<%=  user.username %> </h3>
+          <p class="tagline">Keep going.</p>
+          <button class="editagline">Edit</button><br>
+          <a href="/logout" class="button">Logout</a>
+          <a href="" class="addpost" id="addpost">Add Post</a>
+          <form action="/upload" hidden method="post" enctype="multipart/form-data" id="postform">
+            <input type="file" name="file" id="inputbutton"> 
+            <input type="text" name="caption" id="postcaption">
+            <button type="submit">Submit</button>
+          </form>
+          <script>
+            document.querySelector("#addpost").addEventListener('click',function(e){
+              e.preventDefault();
+              document.querySelector("#inputbutton").click();
+
+            })
+            document.getElementById('inputbutton').addEventListener('change', function() {
+              let caption = prompt("Enter Caption:");
+              if (caption !== null) {
+                document.getElementById('postcaption').value = caption;
+                document.getElementById('postform').submit();
+              }
+            });
+
+        </script>
+        </div>
+    </div>
+    <div class="container">
+      <div class="cards">
+        <% user.posts.forEach(function(post) { %>
+        <div class="card">
+          <img src="/images/uploads/<%= post.image %>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><%=  post.postText %></h5>
+          </div>
+        </div>
+        <% }) %>
+
+      </div>
+    
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>

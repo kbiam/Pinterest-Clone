@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.nav{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+ 
+}
+.nav h3{
+    color: rgb(255, 255, 255);
+    
+}
+.other{
+    display: flex;
+    gap: 50px;
+    text-align: center;
+    
+}
+.other a{
+    text-decoration: none;
+    font-size: 19px;
+    color: white;
+}
+.other #logout{
+    padding: 1px 10px;
+    background-color: rgb(206, 28, 28);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}

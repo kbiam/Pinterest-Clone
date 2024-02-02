@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/feed.css">
+</head>
+<body>
+<%- include('./partials/header.ejs') %>
+     
+<div class="container">
+  <% posts.forEach(function(post) { %>
+    <div class="box">
+      <img src="/images/uploads/<%= post.image %>" alt="image"></a>
+      <p>@<%= post.user.username%></p>
+    </div> 
+  <% }) %>
+</div>
+       
+       
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="app.js"></script>
+
+                     
+   
+</body>
+</html>
